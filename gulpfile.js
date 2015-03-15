@@ -7,13 +7,15 @@ var gulp = require('gulp'),
     rename = require('gulp-rename')
     concat = require('gulp-concat')
     bower = require('gulp-bower')
-    compass = require('gulp-compass');
+    compass = require('gulp-compass')
+    imagemin = require('gulp-imagemin');
 
 //Paths
 var config = {
-	bowerDir: './bower_components',
-	scripts: './resources/js/*.js',
-  	styles: './resources/scss/'
+    bowerDir: './bower_components',
+    scripts: './resources/js/*.js',
+    styles: './resources/scss/', 
+    images: './resources/images/'
 }
 
 // Bower
@@ -31,13 +33,13 @@ gulp.task('icons', function() {
 
 // Bootsrap
 gulp.task('bootstrap-css', function() {
-	return sass(config.bowerDir + '/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss', { 
-			style: 'compressed',
-			loadPath: [
+    return sass(config.bowerDir + '/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss', { 
+            style: 'compressed',
+            loadPath: [
                 './resources/scss/_settings.scss'
             ]
 
-	}) 
+    }) 
     .pipe(rename('bootstrap.min.css'))
     .pipe(gulp.dest('./public/assets/css'));
 });
@@ -67,6 +69,13 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('./public/assets/js'));
 });
 
+// Images
+gulp.task('images', function() {
+  return gulp.src(config.images +  '*.{gif,jpg,png,svg}')
+    .pipe(imagemin({ optimizationLevel: 7, progressive: true }))
+    .pipe(gulp.dest('./public/assets/images'));
+});
+
 
  //Bootstrap JS
 gulp.task('bootstrap-js', function() {
@@ -90,15 +99,15 @@ gulp.task('flickity', function() {
 
 // Default Task
 gulp.task('default', ['watch'], function() {
-    gulp.start('bower', 'icons', 'css', 'scripts', 'flickity', 'bootstrap-js', 'bootstrap-css', 'modernizr');
+    gulp.start('bower', 'icons', 'css', 'scripts', 'flickity', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr');
 });
 
 
 // Watch Files For Changes
 gulp.task('watch', function() {
 
-	// Styles
-	gulp.watch(config.styles + '/**/*.scss', ['css']);
+    // Styles
+    gulp.watch(config.styles + '/**/*.scss', ['css']);
 
     // Watch .js files
     gulp.watch(config.scripts, ['scripts']);
