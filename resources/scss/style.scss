@@ -4,6 +4,6 @@ body {
 	background: white;
 
 	@include mq(mobile, tablet) {
-        background: red;
+        background: blue;
     }
 }
