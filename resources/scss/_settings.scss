@@ -1,0 +1,33 @@
+// custom variables and override bootstrap variables
+
+/* #Global
+================================================== */
+
+$body-bg: 						#fff;
+
+/* #Font
+================================================== */
+
+$font-family-sans-serif: 		'Montserrat', sans-serif;
+$font-family-alt: 				'Source Sans Pro', sans-serif;
+$font-size-base:          		16px !default;
+$line-height-base:        		1.5 !default; // 24/16
+
+
+/* #Colors
+================================================== */
+
+$color-st:						#635C73;
+$color-nd:						#8d81ac;
+$color-rt: 						#f3f3f3;
+
+
+$headings-color:          		$color-st !default;
+$brand-primary:        			$color-nd !default;
+$btn-primary-border:   			$brand-primary !default;
+$btn-default-color:             $color-nd !default;
+$btn-default-bg:                $color-rt !default;
+$btn-default-border:            $color-rt !default;
+$btn-info-bg:                   $color-st !default;
+$btn-info-border:               $color-st !default;
+$input-color-placeholder:       $color-st !default;

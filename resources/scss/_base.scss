@@ -1,0 +1,32 @@
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_variables.scss";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_mixins.scss";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_normalize.scss";
+@import "../../bower_components/sass-mq/mq";
+@import "../../bower_components/animate-sass/_animate.scss";
+@import "../../bower_components/fontawesome/scss/font-awesome.scss";
+
+@import 'compass';
+@import 'compass/reset';
+@import 'compass/css3/flexbox'; 
+
+@import 'settings';
+
+
+/* #PIE
+================================================== */
+
+$pie-path: "PIE.htc";
+
+%pie {
+    behavior: url($pie-path);
+}
+
+
+/* #Border-box
+====================================================*/
+
+// We switch our box model to Border Box.
+// From Paul Irish
+*, *:before, *:after {
+  @include box-sizing('border-box');
+}
