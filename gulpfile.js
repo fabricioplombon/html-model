@@ -57,6 +57,17 @@ gulp.task('css', function() {
     .pipe(gulp.dest('./public/assets/css'));
 });
 
+// App
+gulp.task('app-js', function() {
+  return gulp.src('./resources/js/dist/*.js')
+   /* .pipe(jshint())
+    .pipe(jshint.reporter('default'))*/
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest('./resources/js/dist/temp'))
+    .pipe(rename('app.min.js'))
+    .pipe(gulp.dest('./public/assets/js'));
+});
+
 // Scripts
 gulp.task('scripts', function() {
   return gulp.src(config.scripts)
@@ -69,22 +80,23 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('./public/assets/js'));
 });
 
+
 // Images
 gulp.task('images', function() {
-  return gulp.src(config.images +  '*.{gif,jpg,png,svg}')
-    .pipe(imagemin({ optimizationLevel: 7, progressive: true }))
+  return gulp.src(config.images +  '/**/*.{gif,jpg,png,svg}')
+    .pipe(imagemin({ optimizationLevel: 3, progressive: true }))
     .pipe(gulp.dest('./public/assets/images'));
 });
 
 
- //Bootstrap JS
+//Bootstrap JS
 gulp.task('bootstrap-js', function() {
     return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/javascripts/bootstrap.min.js')
         .pipe(gulp.dest('./public/assets/js'));
 });
 
 
- //Modernizr
+//Modernizr
 gulp.task('modernizr', function() {
     return gulp.src(config.bowerDir + '/modernizr-min/modernizr.min.js')
         .pipe(gulp.dest('./public/assets/js'));
@@ -99,7 +111,7 @@ gulp.task('flickity', function() {
 
 // Default Task
 gulp.task('default', ['watch'], function() {
-    gulp.start('bower', 'icons', 'css', 'scripts', 'flickity', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr');
+    gulp.start('bower', 'icons', 'css', 'scripts', 'flickity', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr', 'app-js');
 });
 
 
