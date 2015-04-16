@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat')
     bower = require('gulp-bower')
     compass = require('gulp-compass')
-    imagemin = require('gulp-imagemin');
+    imagemin = require('gulp-imagemin')
+    livereload = require('gulp-livereload');
 
 //Paths
 var config = {
@@ -54,7 +55,8 @@ gulp.task('css', function() {
       style: 'compressed'
     }))
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('./public/assets/css'));
+    .pipe(gulp.dest('./public/assets/css'))
+    .pipe(livereload());
 });
 
 // App
@@ -77,7 +79,8 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('./resources/js/temp'))
     .pipe(rename('all.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('./public/assets/js'));
+    .pipe(gulp.dest('./public/assets/js'))
+    .pipe(livereload());
 });
 
 
@@ -117,6 +120,8 @@ gulp.task('default', ['watch'], function() {
 
 // Watch Files For Changes
 gulp.task('watch', function() {
+
+    livereload.listen();
 
     // Styles
     gulp.watch(config.styles + '/**/*.scss', ['css']);
