@@ -9,6 +9,7 @@ var gulp = require('gulp'),
     bower = require('gulp-bower')
     compass = require('gulp-compass')
     imagemin = require('gulp-imagemin')
+    minifyCss = require('gulp-minify-css')
     livereload = require('gulp-livereload');
 
 //Paths
@@ -29,6 +30,20 @@ gulp.task('bower', function() {
 gulp.task('icons', function() {
     return gulp.src(config.bowerDir + '/fontawesome/fonts/**.*')
         .pipe(gulp.dest('./public/assets/fonts'));
+});
+
+//Flickity
+gulp.task('flickity', function() {
+    return gulp.src(config.bowerDir + '/flickity/dist/flickity.pkgd.min.js')
+        .pipe(gulp.dest('./resources/js/dist'));
+});
+
+//Flickity CSS
+gulp.task('flickity-css', function() {
+    return gulp.src(config.bowerDir + '/flickity/css/flickity.css')
+    .pipe(minifyCss())
+    .pipe(rename('flickity.min.css'))
+    .pipe(gulp.dest('./public/assets/css'));
 });
 
 
@@ -105,16 +120,12 @@ gulp.task('modernizr', function() {
         .pipe(gulp.dest('./public/assets/js'));
 });
 
-//Flickity
-gulp.task('flickity', function() {
-    return gulp.src(config.bowerDir + '/bower_components/flickity/dist/flickity.pkgd.min.js')
-        .pipe(gulp.dest('./public/assets/js'));
-});
+
 
 
 // Default Task
 gulp.task('default', ['watch'], function() {
-    gulp.start('bower', 'icons', 'css', 'scripts', 'flickity', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr', 'app-js');
+    gulp.start('bower', 'icons', 'css', 'scripts', 'flickity', 'flickity-css', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr', 'app-js');
 });
 
 

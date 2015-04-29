@@ -81,7 +81,8 @@
 	
 <!-- Bootstrap core CSS -->
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="./assets/css/flickity.min.css" rel="stylesheet">
+    
 <!-- Custom Google Web Font -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
@@ -98,15 +99,52 @@
 
 <body>
 	<header id="header">
-		<nav id="nav">
-			
-		</nav>		
-	</header>
+		<nav class="navbar">
+		  <div class="container">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">Brand</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+		        <li><a href="#">Link</a></li>		        
+		      </ul>		    
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav><!-- / .navbar -->
+
+		<div class="container">
+			<div class="gallery js-flickity">
+				<div class="gallery-cell"></div>
+				<div class="gallery-cell"></div>
+				<div class="gallery-cell"></div>
+				<div class="gallery-cell"></div>
+				<div class="gallery-cell"></div>
+			</div>
+		</div><!-- / .container -->
+
+	</header><!-- / #header -->
+
+	<div class="wrap">
+		
+	</div><!-- / .wrap -->
 	
 	
 	<footer id="footer">
-	
-	</footer>
+		<div class="container">
+      		<p class="text-muted">2015 &copy; Copyright. Todos os Direitos Reservados.</p>
+      		<a href="#" class="link-logo" title="logo"><img src="#" alt="Logo"></a>
+      	</div>
+   </footer><!-- / #footer -->
 
 	<!-- Scripts
 	================================================== -->

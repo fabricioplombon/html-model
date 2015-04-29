@@ -32,6 +32,6 @@ $ npm install --global gulp
 ```
 
 ```sh
-$ npm install gulp gulp-ruby-sass gulp-notify gulp-bower gulp-jshint gulp-uglify gulp-concat gulp-rename gulp-compass gulp-imagemin gulp-livereload --save-dev
+$ npm install gulp gulp-ruby-sass gulp-notify gulp-bower gulp-jshint gulp-uglify gulp-concat gulp-rename gulp-compass gulp-imagemin gulp-livereload gulp-minify-css --save-dev
 ```
 
