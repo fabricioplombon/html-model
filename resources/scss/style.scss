@@ -1,24 +1,8 @@
 @import 'base';
 
-html {
-  position: relative;
-  min-height: 100%;
-}
+/* #Default
+================================================== */
 
-html, body { 
-	margin:0; 
-	height: 100%;
-}
-
-body {
-	background: white;
-	/* Margin bottom by footer height */
-  	margin-bottom: 60px;
-
-	@include mq(mobile, tablet) {
-        background: white;
-    }
-}
 
  .wrap {
 	min-height: 100%;
@@ -28,35 +12,51 @@ body {
     display: block;
 }
 
+/* #Header 
+================================================== */
 
-.gallery {
-  background: #EEE;
-}
+#header {
 
-.gallery-cell {
-  width: 100%;
-  height: 200px;
-  margin-right: 10px;
-  background: #8C8;
-  counter-increment: gallery-cell;
-}
-
-/* cell number */
-.gallery-cell:before {
-  display: block;
-  text-align: center;
-  content: counter(gallery-cell);
-  line-height: 200px;
-  font-size: 80px;
-  color: white;
-}
-
-
-.navbar-toggle {
-	
-	.icon-bar {
-		background: $color-st;
+	.navbar-toggle {
+		
+		.icon-bar {
+			background: $color-st;
+		}
 	}
+
+}
+
+
+/* #Slider
+================================================== */
+
+.slider {
+	width: 100%;
+	height: 300px;
+}
+
+.swiper-container {
+	width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
 }
 
 /* #Footer
@@ -82,3 +82,9 @@ body {
 		float: right;		
 	}
 }
+
+
+/* #Responsive
+================================================== */
+
+@import 'responsive';

@@ -5,11 +5,14 @@
 
 $body-bg: 						#fff;
 
+$bg-st:							#fff;
+
 /* #Font
 ================================================== */
 
-$font-family-sans-serif: 		'Montserrat', sans-serif;
-$font-family-alt: 				'Source Sans Pro', sans-serif;
+$font-st: 						'Montserrat', sans-serif;
+$font-nd: 						'Source Sans Pro', sans-serif;
+
 $font-size-base:          		16px !default;
 $line-height-base:        		1.5 !default; // 24/16
 
@@ -21,6 +24,10 @@ $color-st:						#635C73;
 $color-nd:						#8d81ac;
 $color-rt: 						#f3f3f3;
 
+$color-dark:					#575757;
+$color-light:					#f3f3f3;
+$color-middle:					#CCC;	
+
 
 $headings-color:          		$color-st !default;
 $brand-primary:        			$color-nd !default;
@@ -31,3 +38,6 @@ $btn-default-border:            $color-rt !default;
 $btn-info-bg:                   $color-st !default;
 $btn-info-border:               $color-st !default;
 $input-color-placeholder:       $color-st !default;
+
+
+$transition:					all ease-in-out 300ms;

@@ -32,17 +32,16 @@ gulp.task('icons', function() {
         .pipe(gulp.dest('./public/assets/fonts'));
 });
 
-//Flickity
-gulp.task('flickity', function() {
-    return gulp.src(config.bowerDir + '/flickity/dist/flickity.pkgd.min.js')
+//Swiper
+gulp.task('swiper', function() {
+    return gulp.src(config.bowerDir + '/swiper/dist/js/swiper.jquery.min.js')
         .pipe(gulp.dest('./resources/js/dist'));
 });
 
-//Flickity CSS
-gulp.task('flickity-css', function() {
-    return gulp.src(config.bowerDir + '/flickity/css/flickity.css')
-    .pipe(minifyCss())
-    .pipe(rename('flickity.min.css'))
+//Swiper CSS
+gulp.task('swiper-css', function() {
+    return gulp.src(config.bowerDir + '/swiper/dist/css/swiper.min.css')
+    /*.pipe(minifyCss())*/
     .pipe(gulp.dest('./public/assets/css'));
 });
 
@@ -125,7 +124,7 @@ gulp.task('modernizr', function() {
 
 // Default Task
 gulp.task('default', ['watch'], function() {
-    gulp.start('bower', 'icons', 'css', 'scripts', 'flickity', 'flickity-css', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr', 'app-js');
+    gulp.start('bower', 'icons', 'scripts', 'swiper', 'swiper-css', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr', 'app-js', 'css');
 });
 
 
