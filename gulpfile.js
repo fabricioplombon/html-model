@@ -46,6 +46,13 @@ gulp.task('swiper-css', function() {
 });
 
 
+//Jquery Validate
+gulp.task('validate', function() {
+    return gulp.src(config.bowerDir + '/jquery-validation/dist/jquery.validate.min.js')
+        .pipe(gulp.dest('./resources/js/dist'));
+});
+
+
 // Bootsrap
 gulp.task('bootstrap-css', function() {
     return sass(config.bowerDir + '/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss', { 
@@ -124,7 +131,7 @@ gulp.task('modernizr', function() {
 
 // Default Task
 gulp.task('default', ['watch'], function() {
-    gulp.start('bower', 'icons', 'scripts', 'swiper', 'swiper-css', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr', 'app-js', 'css');
+    gulp.start('bower', 'icons', 'scripts', 'swiper', 'swiper-css', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr', 'app-js', 'css', 'validate');
 });
 
 

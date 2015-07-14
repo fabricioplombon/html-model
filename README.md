@@ -22,7 +22,7 @@ bower install modernizr --save
 bower install sass-mq --save
 ```
 ```sh
-bower install flickity --save
+bower install swiper --save
 ```
 
 #### 2. Install Gulp Components
