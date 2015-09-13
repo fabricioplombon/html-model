@@ -52,6 +52,12 @@ gulp.task('validate', function() {
         .pipe(gulp.dest('./resources/js/dist'));
 });
 
+// Picture Fill 
+gulp.task('picturefill', function() {
+    return gulp.src(config.bowerDir + '/picturefill/dist/picturefill.min.js')
+        .pipe(gulp.dest('./resources/js/dist'));
+});
+
 
 // Bootsrap
 gulp.task('bootstrap-css', function() {
@@ -131,7 +137,7 @@ gulp.task('modernizr', function() {
 
 // Default Task
 gulp.task('default', ['watch'], function() {
-    gulp.start('bower', 'icons', 'scripts', 'swiper', 'swiper-css', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr', 'app-js', 'css', 'validate');
+    gulp.start('bower', 'icons', 'scripts', 'swiper', 'swiper-css', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr', 'app-js', 'css', 'validate', 'picturefill');
 });
 
 
