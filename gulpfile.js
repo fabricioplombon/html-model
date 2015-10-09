@@ -10,7 +10,8 @@ var gulp = require('gulp'),
     compass = require('gulp-compass')
     imagemin = require('gulp-imagemin')
     minifyCss = require('gulp-minify-css')
-    livereload = require('gulp-livereload');
+    livereload = require('gulp-livereload')
+    sourcemaps = require('gulp-sourcemaps');
 
 //Paths
 var config = {
@@ -76,12 +77,14 @@ gulp.task('bootstrap-css', function() {
 // CSS
 gulp.task('css', function() {
   gulp.src(config.styles + '/*.scss')
+  	.pipe(sourcemaps.init())
     .pipe(compass({
       css: './resources/css',      
       sass: './resources/scss',
       style: 'compressed'
     }))
     .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./public/assets/css'))
     .pipe(livereload());
 });
@@ -100,12 +103,14 @@ gulp.task('app-js', function() {
 // Scripts
 gulp.task('scripts', function() {
   return gulp.src(config.scripts)
+  	.pipe(sourcemaps.init())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(concat('all.js'))
     .pipe(gulp.dest('./resources/js/temp'))
     .pipe(rename('all.min.js'))
     .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./public/assets/js'))
     .pipe(livereload());
 });
