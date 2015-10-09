@@ -1,30 +1,33 @@
+'use strict';
+
 // Load plugins
 var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass')
-    notify = require("gulp-notify")
-    jshint = require('gulp-jshint')
-    uglify = require('gulp-uglify')
-    rename = require('gulp-rename')
-    concat = require('gulp-concat')
-    bower = require('gulp-bower')
-    compass = require('gulp-compass')
-    imagemin = require('gulp-imagemin')
-    minifyCss = require('gulp-minify-css')
-    livereload = require('gulp-livereload')
-    sourcemaps = require('gulp-sourcemaps');
+sass = require('gulp-sass'),
+notify = require("gulp-notify"),
+jshint = require('gulp-jshint'),
+uglify = require('gulp-uglify'),
+rename = require('gulp-rename'),
+concat = require('gulp-concat'),
+bower = require('gulp-bower'),
+compass = require('gulp-compass'),
+imagemin = require('gulp-imagemin'),
+minifyCss = require('gulp-minify-css'),
+livereload = require('gulp-livereload'),
+sourcemaps = require('gulp-sourcemaps'),
+gulpSequence = require('gulp-sequence');
 
-//Paths
+// Paths
 var config = {
     bowerDir: './bower_components',
     scripts: './resources/js/*.js',
-    styles: './resources/scss/', 
+    styles: './resources/scss/',
     images: './resources/images/'
 }
 
 // Bower
 gulp.task('bower', function() {
     return bower()
-        .pipe(gulp.dest(config.bowerDir))
+    .pipe(gulp.dest(config.bowerDir))
 });
 
 // Icons
@@ -42,10 +45,8 @@ gulp.task('swiper', function() {
 //Swiper CSS
 gulp.task('swiper-css', function() {
     return gulp.src(config.bowerDir + '/swiper/dist/css/swiper.min.css')
-    /*.pipe(minifyCss())*/
     .pipe(gulp.dest('./public/assets/css'));
 });
-
 
 //Jquery Validate
 gulp.task('validate', function() {
@@ -53,33 +54,38 @@ gulp.task('validate', function() {
         .pipe(gulp.dest('./resources/js/dist'));
 });
 
-// Picture Fill 
+// Picture Fill
 gulp.task('picturefill', function() {
     return gulp.src(config.bowerDir + '/picturefill/dist/picturefill.min.js')
         .pipe(gulp.dest('./resources/js/dist'));
 });
 
-
-// Bootsrap
-gulp.task('bootstrap-css', function() {
-    return sass(config.bowerDir + '/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss', { 
-            style: 'compressed',
-            loadPath: [
-                './resources/scss/_settings.scss'
-            ]
-
-    }) 
-    .pipe(rename('bootstrap.min.css'))
-    .pipe(gulp.dest('./public/assets/css'));
+// Bootstrap CSS
+gulp.task('bootstrap-css', function () {
+ gulp.src('./resources/scss/bootstrap/bootstrap.scss')
+   .pipe(sass({outputStyle: 'compressed'}))
+   .pipe(rename('bootstrap.min.css'))
+   .pipe(gulp.dest('./public/assets/css/'));
 });
 
+//Bootstrap JS
+gulp.task('bootstrap-js', function() {
+    return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/javascripts/bootstrap.min.js')
+        .pipe(gulp.dest('./public/assets/js'));
+});
+
+//Modernizr
+gulp.task('modernizr', function() {
+    return gulp.src(config.bowerDir + '/modernizr-min/modernizr.min.js')
+        .pipe(gulp.dest('./public/assets/js'));
+});
 
 // CSS
 gulp.task('css', function() {
   gulp.src(config.styles + '/*.scss')
   	.pipe(sourcemaps.init())
     .pipe(compass({
-      css: './resources/css',      
+      css: './resources/css',
       sass: './resources/scss',
       style: 'compressed'
     }))
@@ -92,8 +98,6 @@ gulp.task('css', function() {
 // App
 gulp.task('app-js', function() {
   return gulp.src('./resources/js/dist/*.js')
-   /* .pipe(jshint())
-    .pipe(jshint.reporter('default'))*/
     .pipe(concat('app.js'))
     .pipe(gulp.dest('./resources/js/dist/temp'))
     .pipe(rename('app.min.js'))
@@ -115,7 +119,6 @@ gulp.task('scripts', function() {
     .pipe(livereload());
 });
 
-
 // Images
 gulp.task('images', function() {
   return gulp.src(config.images +  '/**/*.{gif,jpg,png,svg}')
@@ -123,32 +126,14 @@ gulp.task('images', function() {
     .pipe(gulp.dest('./public/assets/images'));
 });
 
-
-//Bootstrap JS
-gulp.task('bootstrap-js', function() {
-    return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/javascripts/bootstrap.min.js')
-        .pipe(gulp.dest('./public/assets/js'));
-});
-
-
-//Modernizr
-gulp.task('modernizr', function() {
-    return gulp.src(config.bowerDir + '/modernizr-min/modernizr.min.js')
-        .pipe(gulp.dest('./public/assets/js'));
-});
-
-
-
-
 // Default Task
-gulp.task('default', ['watch'], function() {
-    gulp.start('bower', 'icons', 'scripts', 'swiper', 'swiper-css', 'images', 'bootstrap-js', 'bootstrap-css', 'modernizr', 'app-js', 'css', 'validate', 'picturefill');
-});
+gulp.task('default', ['watch'], gulpSequence('bower', 'icons', 'images', ['swiper', 'swiper-css'], ['bootstrap-js', 'bootstrap-css'], 'modernizr', 'picturefill', 'validate', ['app-js', 'scripts'], 'css'));
 
 
 // Watch Files For Changes
 gulp.task('watch', function() {
 
+    // Livereolad
     livereload.listen();
 
     // Styles
